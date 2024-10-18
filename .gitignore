@@ -34,3 +34,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+app/page copy 2.jsx
+app/page copy.jsx
+app/ventures1/[id].jsx
+modelling.txt
