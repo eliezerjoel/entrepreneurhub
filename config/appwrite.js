@@ -20,7 +20,7 @@ const createAdminClient = async () => {
   };
 };
 
-const createSessionClient = async () => {
+const createSessionClient = async (session) => {
   const client = new Client()
     .setEndpoint("https://cloud.appwrite.io/v1")
     .setProject("66fd757200140d617b64");
