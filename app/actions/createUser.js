@@ -1,6 +1,7 @@
 'use server';
 import { createAdminClient } from '../../config/appwrite'
 import { ID } from 'node-appwrite';
+import { cookies } from "next/headers";
 async function createUser(previousState, formData){
 
   const name = formData.get("name");
@@ -29,6 +30,22 @@ async function createUser(previousState, formData){
 try {
     
   await account.create(ID.unique(), email, password, name);
+  
+  
+  // Signing am in immediately
+  
+    //  Generate session
+    const session = await account.createEmailPasswordSession(email, password);
+
+    // Create cookie
+    cookies().set("appwrite-session", session.secret, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+      expires: new Date(session.expire),
+      path: "/",
+    });
+
   return { success: true };
   
 } catch (error) {

@@ -15,7 +15,8 @@ const Register = () => {
     if(state.error) toast.error(state.error);
     if(state.success){
        toast.success("User created successfully");
-       router.push("/login");
+
+       router.push("/profile");
     }
   }, [state])
   return (

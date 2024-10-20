@@ -3,27 +3,27 @@ import { createSessionClient } from "../../config/appwrite";
 import { cookies } from "next/headers";
 
 async function checkAuth() {
-  console.log("Testing checkAuth()");
+  // console.log("Testing checkAuth()");
   const sessionCookie = cookies().get("appwrite-session");
   
-  console.log("Testing checkAuth()", sessionCookie);
+  // console.log("Testing checkAuth()", sessionCookie);
 
   if (!sessionCookie) {
-    console.log("Tekaliko baaba");
+    // console.log("Tekaliko baaba");
     return {
       isAuthenticated: false,
     };
   } else {
-    console.log("Kwekali baaba");
+    // console.log("Kwekali baaba");
   }
 
   try {
     const { account } = await createSessionClient(sessionCookie.value);
     const user = await account.get();
 
-    console.log("Testing account.get()");
-    console.log(user);
-    console.log("Testing account.get()");
+    // console.log("Testing account.get()");
+    // console.log(user);
+    // console.log("Testing account.get()");
     return {
       isAuthenticated: true,
       user: {

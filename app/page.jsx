@@ -15,11 +15,11 @@ const EntHubHome = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Technology Projects */}
           <div className="bg-white p-6 shadow-lg rounded-lg">
-            <img
+            {/* <img
               src="/images/technology.jpg"
               alt="Technology Projects"
               className="w-full h-48 object-cover rounded-md"
-            />
+            /> */}
             <h4 className="text-xl font-semibold mt-4">Technology Projects</h4>
             <p className="text-gray-600 mt-2">
               Explore innovative tech ideas by students.
@@ -28,11 +28,11 @@ const EntHubHome = () => {
 
           {/* Art & Design Projects */}
           <div className="bg-white p-6 shadow-lg rounded-lg">
-            <img
+            {/* <img
               src="/images/art-design.jpg"
               alt="Art & Design Projects"
               className="w-full h-48 object-cover rounded-md"
-            />
+            /> */}
             <h4 className="text-xl font-semibold mt-4">Art & Design</h4>
             <p className="text-gray-600 mt-2">
               Dive into creative projects that inspire.
@@ -41,11 +41,11 @@ const EntHubHome = () => {
 
           {/* Social Impact Projects */}
           <div className="bg-white p-6 shadow-lg rounded-lg">
-            <img
+            {/* <img
               src="/images/social-impact.jpg"
               alt="Social Impact Projects"
               className="w-full h-48 object-cover rounded-md"
-            />
+            /> */}
             <h4 className="text-xl font-semibold mt-4">Social Impact</h4>
             <p className="text-gray-600 mt-2">
               Discover projects making a difference.
