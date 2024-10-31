@@ -43,7 +43,7 @@ const Header = () => {
 
                 {}
                 <Link
-                  href="/organisations"
+                  href="/organisations/addNew"
                   className="rounded-md px-3 py-2 text-sm font-medium text-gray-800 hover:bg-gray-700 hover:text-white"
                 >
                   Organisations
@@ -63,7 +63,7 @@ const Header = () => {
               {/* <!-- Logged Out Only --> */}
               {isAuthenticated ? (
                 <>
-                  <Link href="/">My Ventures</Link>
+                  <Link href="/ventures/addNew">Add Ventures</Link>
                   <button
                     onClick={handleLogout}
                     className="mx-3 text-gray-800 hover:text-gray-600"

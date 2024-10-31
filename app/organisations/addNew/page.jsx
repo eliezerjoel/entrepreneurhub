@@ -35,7 +35,7 @@ const Organisation = () => {
             <input
               type="text"
               id="regNo"
-              placeholder="Enter your registration number"
+              placeholder="Enter your Organisation Name"
               name="name"
               className="border rounded w-full py-2 px-3"
               required
@@ -55,10 +55,8 @@ const Organisation = () => {
               name="member"
               placeholder="Members regNos, separated by commas"
               className="border rounded w-full py-2 px-3"
-            
             />
           </div>
-          
 
           <div className="flex flex-col gap-5">
             <button
