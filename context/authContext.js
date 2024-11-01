@@ -1,5 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import checkAuth from '../app/actions/checkAuth';
+import { get } from 'http';
+import getCurrentUser from "../app/actions/getCurrentUser"
 
 const AuthContext = createContext();
 
@@ -12,9 +14,15 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkAuthentication = async () => {
       const { isAuthenticated, user } = await checkAuth();
+      // const currentUser = await getCurrentUser();
+      // if (!currentUser) {
+      //   console.log("currentUser is null");
+      //   return { isAuthenticated: false, user: null };
+      // }
+      // const { isAuthenticated, user } = currentUser;
 
     console.log("isAuthenticated:", isAuthenticated); 
-    console.log("User:", user); 
+    console.log("User: kapya", user); 
       setIsAuthenticated(isAuthenticated);
       setCurrentUser(user);
       setIsLoading(false);

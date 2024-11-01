@@ -1,9 +1,8 @@
-'use server';
-import { createAdminClient } from '../../config/appwrite'
-import { ID } from 'node-appwrite';
+"use server";
+import { createAdminClient } from "../../config/appwrite";
+import { ID } from "node-appwrite";
 import { cookies } from "next/headers";
-async function createUser(previousState, formData){
-
+async function createUser(previousState, formData) {
   const name = formData.get("name");
   const email = formData.get("email");
   const password = formData.get("password");
@@ -26,14 +25,14 @@ async function createUser(previousState, formData){
       error: "Passwords do not match",
     };
   }
-  const {account} = await createAdminClient()
-try {
-    
-  await account.create(ID.unique(), email, password, name);
-  
-  
-  // Signing am in immediately
-  
+  const { account } = await createAdminClient();
+  try {
+    const newAccount = await account.create(ID.unique(), email, password, name);
+
+    if (!newAccount) throw Error;
+
+    // Signing am in immediately
+
     //  Generate session
     const session = await account.createEmailPasswordSession(email, password);
 
@@ -46,12 +45,21 @@ try {
       path: "/",
     });
 
-  return { success: true };
-  
-} catch (error) {
+    const newUser = await databases.createDocument(
+      "VenturesDB",
+      "usersColl",
+      ID.unique(),
+      {
+        accountId: newAccount.$id,
+        username: name,
+        email: email,
+      }
+    )
+    console.log(newUser, "Is brand new user");
+    return { success: true };
+  } catch (error) {
     console.log("Registration error: ", error);
-    return { error: 'Could not register user' };
-}
-
+    return { error: "Could not register user" };
+  }
 }
 export default createUser;

@@ -14,7 +14,7 @@ const Profile = () => {
   useEffect(() => {
     if (state.error) toast.error(state.error);
     if (state.success) {
-      toast.success("Venture created successfully");
+      toast.success("Profile Completed");
       router.push("/organisations/addNew");
     }
   }, [state]);

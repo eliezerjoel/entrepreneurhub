@@ -39,3 +39,5 @@ app/page copy 2.jsx
 app/page copy.jsx
 app/ventures1/[id].jsx
 modelling.txt
+app/actions/getAccount.js
+app/actions/getCurrentUser.js
