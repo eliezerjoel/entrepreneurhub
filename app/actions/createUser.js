@@ -2,12 +2,14 @@
 import { createAdminClient } from "../../config/appwrite";
 import { ID } from "node-appwrite";
 import { cookies } from "next/headers";
+import { useAuth } from "../../context/authContext";
+
 async function createUser(previousState, formData) {
+  const { isAuthenticated, setIsAuthenticated } = useAuth();
   const name = formData.get("name");
   const email = formData.get("email");
   const password = formData.get("password");
   const confirmPassword = formData.get("confirm-password");
-
   if (!email || !name || !password) {
     return {
       error: "Please fill in all fields",
@@ -25,6 +27,8 @@ async function createUser(previousState, formData) {
       error: "Passwords do not match",
     };
   }
+
+  const { databases } = await createAdminClient();
   const { account } = await createAdminClient();
   try {
     const newAccount = await account.create(ID.unique(), email, password, name);
@@ -35,6 +39,8 @@ async function createUser(previousState, formData) {
 
     //  Generate session
     const session = await account.createEmailPasswordSession(email, password);
+
+    setIsAuthenticated(true);
 
     // Create cookie
     cookies().set("appwrite-session", session.secret, {
@@ -54,7 +60,7 @@ async function createUser(previousState, formData) {
         username: name,
         email: email,
       }
-    )
+    );
     console.log(newUser, "Is brand new user");
     return { success: true };
   } catch (error) {
