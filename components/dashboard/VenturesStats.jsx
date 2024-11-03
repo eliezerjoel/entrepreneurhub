@@ -5,6 +5,7 @@ const VenturesStats = async () => {
   const totalVentures = await countVentures();
   const approvedVentures = await countApprovedVentures();
   const unApprovedVentures = await countUnapprovedVentures();
+  console.log(totalVentures, approvedVentures, unApprovedVentures);
   const cardsData = [
     {
       title: "Total Ventures",

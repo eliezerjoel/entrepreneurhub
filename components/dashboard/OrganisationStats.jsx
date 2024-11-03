@@ -1,26 +1,13 @@
 import React from "react";
+import { countOrganisations } from "../../app/actions/countOrganisations";
 
 const OrganisationStats = () => {
+  const organisations = countOrganisations();
   const cardsData = [
     {
-      title: "Total Projects",
-      value: 150,
-      icon: "📁", // Icon for illustration, you can replace it with an actual SVG or icon component
-    },
-    {
-      title: "Active Users",
-      value: 120,
+      title: "Active organisations",
+      value: organisations,
       icon: "👤",
-    },
-    {
-      title: "New Signups Today",
-      value: 10,
-      icon: "🆕",
-    },
-    {
-      title: "Pending Approvals",
-      value: 5,
-      icon: "🔍",
     },
   ];
 

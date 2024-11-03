@@ -1,16 +1,20 @@
 import React from "react";
-
+import { countUsers, countTodayUsers } from "../../app/actions/countUsers"
+ 
 const UsersStats = () => {
+
+  const totalUsers =countUsers();
+  const todayUsers = countTodayUsers();
 
   const cardsData = [
     {
       title: "New Signups Today",
-      value: 10,
+      value: todayUsers,
       icon: "🆕",
     },
     {
       title: "Active Users",
-      value: 120,
+      value: totalUsers,
       icon: "🔍",
     },
   ];

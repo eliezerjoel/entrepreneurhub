@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import checkAuth from '../app/actions/checkAuth';
 import { get } from 'http';
-import getCurrentUser from "../app/actions/getCurrentUser"
+// import getCurrentUser from "../app/actions/getCurrentUser"
 
 const AuthContext = createContext();
 
