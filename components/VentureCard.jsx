@@ -19,7 +19,7 @@ const VentureCard = ({ venture }) => {
         <h2 className="text-xl font-bold">
           {venture.name || "Unnamed Venture"}
         </h2>
-        <p className="text-gray-600">{desc.substring(0, 100)}...</p>
+        <p className="text-gray-600">{desc.substring(0, 90)}...</p>
         {venture.$id ? (
           <Link href={`/ventures/${venture.$id}`}>
             <button className="mt-4 bg-gray-800 text-white px-3 py-1 rounded hover:bg-gray-700">
