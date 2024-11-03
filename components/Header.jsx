@@ -96,23 +96,23 @@ const Header = () => {
       <div className="md:hidden">
         <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
           <Link
-            href="/"
+            href="/ventures"
             className="block rounded-md px-3 py-2 text-base font-medium text-gray-800 hover:bg-gray-700 hover:text-white"
           >
-            Rooms
+            Ventures
           </Link>
           {/* <!-- Logged In Only --> */}
           <Link
-            href="/bookings"
+            href="/organisations/addNew"
             className="block rounded-md px-3 py-2 text-base font-medium text-gray-800 hover:bg-gray-700 hover:text-white"
           >
-            Bookings
+            Organisations
           </Link>
           <Link
-            href="/ventures/add"
+            href="/affiliates"
             className="block rounded-md px-3 py-2 text-base font-medium text-gray-800 hover:bg-gray-700 hover:text-white"
           >
-            Add Room
+            Affiliates
           </Link>
         </div>
       </div>
