@@ -1,4 +1,6 @@
 import { createAdminClient } from "../../config/appwrite";
+import { Query } from "node-appwrite";
+
 
 async function countVentures() {
   try {

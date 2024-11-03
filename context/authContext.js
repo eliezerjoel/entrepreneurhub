@@ -1,12 +1,13 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import checkAuth from '../app/actions/checkAuth';
-import { get } from 'http';
+"use client";
+
+import { createContext, useContext, useState, useEffect } from "react";
+import checkAuth from "../app/actions/checkAuth";
+import { get } from "http";
 // import getCurrentUser from "../app/actions/getCurrentUser"
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -21,8 +22,8 @@ export const AuthProvider = ({ children }) => {
       // }
       // const { isAuthenticated, user } = currentUser;
 
-    console.log("isAuthenticated:", isAuthenticated); 
-    console.log("User: kapya", user); 
+      console.log("isAuthenticated:", isAuthenticated);
+      console.log("User: kapya", user);
       setIsAuthenticated(isAuthenticated);
       setCurrentUser(user);
       setIsLoading(false);
@@ -34,7 +35,7 @@ export const AuthProvider = ({ children }) => {
   if (isLoading) {
     return <div>Loading...</div>;
   }
-  
+
   return (
     <AuthContext.Provider
       value={{
@@ -52,7 +53,7 @@ export const AuthProvider = ({ children }) => {
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error("useAuth must be used within an AuthProvider");
   }
   return context;
 };

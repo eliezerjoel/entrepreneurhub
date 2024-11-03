@@ -1,4 +1,5 @@
 import { createAdminClient } from "../../config/appwrite";
+import { Query } from "node-appwrite";
 
 async function countUsers() {
   try {
@@ -36,8 +37,8 @@ async function countTodayUsers() {
       "VenturesDB",
       "usersColl",
       [
-        Query.greaterThanEqual("createdAt", startOfDay.toISOString()),
-        Query.lessThanEqual("createdAt", endOfDay.toISOString()),
+        Query.greaterThanEqual("$createdAt", startOfDay.toISOString()),
+        Query.lessThanEqual("$createdAt", endOfDay.toISOString()),
       ],
       1 // Limit results to 1 to reduce data load
     );
