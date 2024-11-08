@@ -13,7 +13,7 @@ async function getOneVenture(id) {
     );
     console.log("Venture object:", venture);
 
-    const organisationId = venture.creator; // Access the creator directly
+    const organisationId = venture.creator; // Access creator directly
 
     if (organisationId) {
       try {
@@ -22,49 +22,46 @@ async function getOneVenture(id) {
         const orgResponse = await databases.listDocuments(
           "VenturesDB",
           "organisationsColl",
-          [Query.equal("$id", organisationId)] // Query using the organization ID
+          [Query.equal("$id", organisationId)] // Query using the organisation ID
         );
 
         if (orgResponse.total === 0) {
           console.error("Organization not found");
-          return { venture, phoneNumber: null };
+          return { venture, phoneNumber: null, organisationName: null };
         }
 
         const organisation = orgResponse.documents[0];
+        const organisationName = organisation.name; // Get organization name
         const memberIds = organisation.members;
 
         if (!memberIds || memberIds.length === 0) {
           console.error("No members found in the organization");
-          return { venture, phoneNumber: null };
+          return { venture, phoneNumber: null, organisationName };
         }
 
-        // Fetch the first member's user document to retrieve their phone number
+        // Get the phone number of the first member in the organisation (or modify to fit your use case)
+        const userId = memberIds[0];
         const userResponse = await databases.listDocuments(
           "VenturesDB",
           "usersColl",
-          [Query.equal("$id", memberIds[0])] // Use the first member ID
+          [Query.equal("$id", userId)]
         );
 
         if (userResponse.total === 0) {
           console.error("User not found");
-          return { venture, phoneNumber: null };
+          return { venture, phoneNumber: null, organisationName };
         }
 
-        const user = userResponse.documents[0];
-        const phoneNumber = user.phone || null; // Get the phone number if it exists
-        console.log("User phone number:", phoneNumber);
+        const phoneNumber = userResponse.documents[0].phone;
 
-        return { venture, phoneNumber };
+        return { venture, phoneNumber, organisationName };
       } catch (error) {
-        console.error(
-          "Failed to get member organisations or user details:",
-          error
-        );
-        return { venture, phoneNumber: null };
+        console.error("Failed to get organisation or user data:", error);
+        return { venture, phoneNumber: null, organisationName: null };
       }
     } else {
       console.error("Creator not found on venture");
-      return { venture, phoneNumber: null };
+      return { venture, phoneNumber: null, organisationName: null };
     }
   } catch (error) {
     console.error("Failed to get venture:", error);
