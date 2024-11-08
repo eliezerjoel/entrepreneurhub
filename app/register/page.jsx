@@ -1,24 +1,26 @@
-'use client';
-import Link from 'next/link';
-import React from 'react'
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
-import {useFormState} from 'react-dom'
-import createUser from '../actions/createUser';
-import { toast } from 'react-toastify';
-
+"use client";
+import Link from "next/link";
+import React from "react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useFormState } from "react-dom";
+import createUser from "../actions/createUser";
+import { toast } from "react-toastify";
+import { useAuth } from "../../context/authContext";
 
 const Register = () => {
   const [state, formAction] = useFormState(createUser, {});
   const router = useRouter();
-  useEffect(()=>{
-    if(state.error) toast.error(state.error);
-    if(state.success){
-       toast.success("User created successfully");
+  const { isAuthenticated, setIsAuthenticated } = useAuth();
 
-       router.push("/profile");
+  useEffect(() => {
+    if (state.error) toast.error(state.error);
+    if (state.success) {
+      toast.success("User created successfully");
+      setIsAuthenticated(true);
+      router.push("/profile");
     }
-  }, [state])
+  }, [state]);
   return (
     <div className="flex items-center justify-center">
       <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-sm mt-20">
@@ -28,7 +30,10 @@ const Register = () => {
           </h2>
 
           <div className="mb-4">
-            <label htmlFor="name" className="block text-gray-700 font-bold mb-2">
+            <label
+              htmlFor="name"
+              className="block text-gray-700 font-bold mb-2"
+            >
               Name
             </label>
             <input
@@ -41,7 +46,10 @@ const Register = () => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
+            <label
+              htmlFor="email"
+              className="block text-gray-700 font-bold mb-2"
+            >
               Email
             </label>
             <input
@@ -54,7 +62,10 @@ const Register = () => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="password" className="block text-gray-700 font-bold mb-2">
+            <label
+              htmlFor="password"
+              className="block text-gray-700 font-bold mb-2"
+            >
               Password
             </label>
             <input
@@ -101,6 +112,6 @@ const Register = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Register
+export default Register;

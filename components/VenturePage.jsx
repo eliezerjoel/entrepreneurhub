@@ -5,7 +5,7 @@ import Link from "next/link";
 import React from "react";
 import { FaChevronLeft } from "react-icons/fa";
 
-const VenturePage = ({ venture }) => {
+const VenturePage = ({ venture, phoneNumber }) => {
   if (!venture) {
     return <div>Venture not found</div>;
   }
@@ -28,6 +28,8 @@ const VenturePage = ({ venture }) => {
           </div>
           <div className="mt-6 sm:mt-0 sm:flex-1">
             <h2 className="text-2xl font-bold text-gray-800">{venture.name}</h2>
+            <h4 className="font- text-1xl">BY: {venture.creator}</h4>
+            <h4 className="font- text-1xl">Contact: {phoneNumber}</h4>
             <p className="text-gray-600 mt-2">{venture.description}</p>
           </div>
         </div>
@@ -43,8 +45,8 @@ const VenturePage = ({ venture }) => {
             <button className="px-4 py-2 bg-yellow-400 rounded-md">⭐</button>
             <button className="px-4 py-2 bg-yellow-400 rounded-md">⭐</button>
             <button className="px-4 py-2 bg-yellow-400 rounded-md">⭐</button>
-            <button className="px-4 py-2 bg-yellow-400 rounded-md">⭐</button>
-            <button className="px-4 py-2 bg-yellow-400 rounded-md">⭐</button>
+            <button className="px-4 py-2 bg-gray-400 rounded-md">⭐</button>
+            <button className="px-4 py-2 bg-gray-400 rounded-md">⭐</button>
           </div>
           <h3 className="text-lg font-semibold text-gray-800 mt-6">Comments</h3>
           <textarea

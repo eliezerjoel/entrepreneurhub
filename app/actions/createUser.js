@@ -2,10 +2,8 @@
 import { createAdminClient } from "../../config/appwrite";
 import { ID } from "node-appwrite";
 import { cookies } from "next/headers";
-import { useAuth } from "../../context/authContext";
 
 async function createUser(previousState, formData) {
-  const { isAuthenticated, setIsAuthenticated } = useAuth();
   const name = formData.get("name");
   const email = formData.get("email");
   const password = formData.get("password");
@@ -40,7 +38,6 @@ async function createUser(previousState, formData) {
     //  Generate session
     const session = await account.createEmailPasswordSession(email, password);
 
-    setIsAuthenticated(true);
 
     // Create cookie
     cookies().set("appwrite-session", session.secret, {

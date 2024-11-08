@@ -1,5 +1,6 @@
 "use server";
 import { createAdminClient } from "../../config/appwrite";
+import { ID } from "node-appwrite";
 import { Query } from "node-appwrite";
 import checkAuth from "./checkAuth";
 export async function completeProfile(previousState, formData) {
@@ -22,6 +23,7 @@ export async function completeProfile(previousState, formData) {
   const regNo = formData.get("regNo");
   const passion = formData.get("passions");
   const phone = formData.get("phone");
+  const orgName = formData.get("orgName");;
   console.log(formData);
 
   if (!regNo || !passion || !phone) {
@@ -33,11 +35,18 @@ export async function completeProfile(previousState, formData) {
   const passions = passion.split(",").map((passion) => passion.trim());
 
   try {
+    const newOrganisation = await databases.createDocument(
+      "VenturesDB",
+      "organisationsColl",
+      ID.unique(),
+      { name: orgName, members: [currentUserId] }
+    );
+    const organisation = newOrganisation.$id;
     const updatedProfile = await databases.updateDocument(
       "VenturesDB",
       "usersColl",
       currentUserId,
-      { regNo, passions, phone }
+      { regNo, passions, phone, organisation }
     );
 
     console.log(updatedProfile);

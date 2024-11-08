@@ -4,9 +4,11 @@ import getOneVenture from "../../actions/getOneVenture";
 
 const VenturePageWrapper = async ({ params }) => {
   const { id } = params;
-  const { venture, phoneNumber } = await getOneVenture(id); // Destructure the venture and phoneNumber
+  const venture = await getOneVenture(id);
 
-  return <VenturePage venture={venture} phoneNumber={phoneNumber} />; // Pass both as props
+  
+
+  return <VenturePage venture={venture} />;
 };
 
 export default VenturePageWrapper;

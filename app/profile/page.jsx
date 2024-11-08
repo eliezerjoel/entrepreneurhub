@@ -15,7 +15,7 @@ const Profile = () => {
     if (state.error) toast.error(state.error);
     if (state.success) {
       toast.success("Profile Completed");
-      router.push("/organisations/addNew");
+      router.push("/ventures/addNew");
     }
   }, [state]);
 
@@ -69,6 +69,20 @@ const Profile = () => {
               id="passions"
               name="phone"
               placeholder="Enter your Phone Contact"
+              className="border rounded w-full py-2 px-3"
+              required
+            />
+          </div>
+
+          <div className="mb-4">
+            <label for="email" className="block text-gray-700 font-bold mb-2">
+              Organisation Name
+            </label>
+            <input
+              type="text"
+              id="regNo"
+              placeholder="Enter your Organisation or group Name"
+              name="orgName"
               className="border rounded w-full py-2 px-3"
               required
             />
