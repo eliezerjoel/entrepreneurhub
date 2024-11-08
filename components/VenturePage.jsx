@@ -5,7 +5,7 @@ import Link from "next/link";
 import React from "react";
 import { FaChevronLeft } from "react-icons/fa";
 
-const VenturePage = ({ venture, phoneNumber }) => {
+const VenturePage = ({ venture, phoneNumber, organisationName }) => {
   if (!venture) {
     return <div>Venture not found</div>;
   }
@@ -28,7 +28,7 @@ const VenturePage = ({ venture, phoneNumber }) => {
           </div>
           <div className="mt-6 sm:mt-0 sm:flex-1">
             <h2 className="text-2xl font-bold text-gray-800">{venture.name}</h2>
-            <h4 className="font- text-1xl">BY: {venture.creator}</h4>
+            {/* <h4 className="font- text-1xl">BY: {organisationName}</h4> */}
             <h4 className="font- text-1xl">Contact: {phoneNumber}</h4>
             <p className="text-gray-600 mt-2">{venture.description}</p>
           </div>
